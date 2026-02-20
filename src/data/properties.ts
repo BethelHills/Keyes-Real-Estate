@@ -64,7 +64,7 @@ export const featuredProperties: Property[] = [
     baths: 4,
     sqft: 3800,
     neighborhood: "Los Feliz",
-    image: "https://images.unsplash.com/photo-1600573472591-ee6c0e7f8a5f?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
     status: "For Sale",
   },
 ];

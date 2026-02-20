@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Bed, Bath, Square, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+const PLACEHOLDER_IMAGE = "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80";
 
 export interface Property {
   id: string;
@@ -21,6 +24,9 @@ interface PropertyCardProps {
 }
 
 export function PropertyCard({ property, index = 0 }: PropertyCardProps) {
+  const [imageError, setImageError] = useState(false);
+  const imageSrc = imageError ? PLACEHOLDER_IMAGE : property.image;
+
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -39,10 +45,11 @@ export function PropertyCard({ property, index = 0 }: PropertyCardProps) {
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
-          src={property.image}
+          src={imageSrc}
           alt={property.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          onError={() => setImageError(true)}
         />
         {property.status && (
           <span
